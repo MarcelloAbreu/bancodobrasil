@@ -96,7 +96,13 @@ public class GeradorUtil {
         return profissoes[indice];
     }
         
-    
+        public static String gerarBandeirasCartao(){
+        String[] cartoes = {"Elo","Hipercard","American Express","Visa","Mastercard","Diners Club","Nubank","Calcard","Caixa","PicPay","Banco Do Brasil","Santander","Itaú"};
+         int indice = (int)(Math.random() * cartoes.length);         
+        return cartoes[indice];
+    }
+       
+
     public static void main(String[] args) {
         //System.out.println("Número Gerado: " + gerarNumero(10));
         //System.out.println("CPF: " + gerarCpf());

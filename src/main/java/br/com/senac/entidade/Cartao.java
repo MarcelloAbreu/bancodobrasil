@@ -1,11 +1,7 @@
 package br.com.senac.entidade;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
@@ -27,7 +23,15 @@ public class Cartao implements Serializable {
     
     @Column(nullable = false,unique = true)
     private String validadeAno;
-    
+
+    public Cartao() {
+    }
+
+    public Cartao(String numero, String bandeira, String validadeAno) {
+        this.numero = numero;
+        this.bandeira = bandeira;
+        this.validadeAno = validadeAno;
+    }
 
     public Long getId() {
         return id;
@@ -37,13 +41,37 @@ public class Cartao implements Serializable {
         this.id = id;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getBandeira() {
+        return bandeira;
+    }
+
+    public void setBandeira(String bandeira) {
+        this.bandeira = bandeira;
+    }
+
+    public String getValidadeAno() {
+        return validadeAno;
+    }
+
+    public void setValidadeAno(String validadeAno) {
+        this.validadeAno = validadeAno;
+    }
+  
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -58,5 +86,4 @@ public class Cartao implements Serializable {
     public String toString() {
         return "br.com.senac.entidade.Cartao[ id=" + id + " ]";
     }
-    
 }
