@@ -8,6 +8,7 @@ import javax.persistence.*;
  * @author marcello.nunes
  */
 @Entity
+@Table(name = "cartao")
 public class Cartao implements Serializable {
 
     private static final long serialVersionUID = 1L;
