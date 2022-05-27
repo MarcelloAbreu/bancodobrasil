@@ -1,5 +1,6 @@
 package br.com.senac.entidade;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -29,6 +30,9 @@ public class Cliente implements Serializable {
     
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL) // fetch = EAGER/ (se não for lista)
     private Endereco endereco; // 1 endereço
+    
+    @OneToMany(mappedBy = "cliente")
+    private List<Cartao> cartoes;
 
     public Cliente() {
     }
@@ -68,6 +72,14 @@ public class Cliente implements Serializable {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public List<Cartao> getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(List<Cartao> cartoes) {
+        this.cartoes = cartoes;
     }
 
     @Override

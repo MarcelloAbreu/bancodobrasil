@@ -16,14 +16,18 @@ public class Cartao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false,length = 19, unique = true)
     private String numero;
     
     @Column(nullable = false)
     private String bandeira;
     
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     private String validadeAno;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
 
     public Cartao() {
     }
@@ -64,6 +68,14 @@ public class Cartao implements Serializable {
 
     public void setValidadeAno(String validadeAno) {
         this.validadeAno = validadeAno;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
   
     @Override

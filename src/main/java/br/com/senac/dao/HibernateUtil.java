@@ -1,4 +1,5 @@
 package br.com.senac.dao;
+import br.com.senac.entidade.Cartao;
 import br.com.senac.entidade.Cliente;
 import br.com.senac.entidade.Endereco;
 import br.com.senac.entidade.PessoaFisica;
@@ -24,7 +25,7 @@ public class HibernateUtil {
             cfg.addAnnotatedClass(PessoaJuridica.class);
             cfg.addAnnotatedClass(Endereco.class);
             cfg.addAnnotatedClass(Profissao.class);
-//            cfg.addAnnotatedClass(Cartao.class);
+            cfg.addAnnotatedClass(Cartao.class);
 
             cfg.configure("/META-INF/hibernate.cfg.xml");
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().

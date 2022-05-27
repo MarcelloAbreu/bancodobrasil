@@ -1,9 +1,10 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Cartao;
-import static br.com.senac.util.GeradorUtil.gerarBandeirasCartao;
-import com.github.javafaker.Faker;
-import java.util.List;
+import br.com.senac.entidade.Cliente;
+import static br.com.senac.util.GeradorUtil.*;
+import com.github.javafaker.*;
+import java.util.*;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.junit.Test;
@@ -27,7 +28,12 @@ public class CartaoDaoImplTest {
     public void testSalvar() {
         System.out.println("salvar");
         Faker faker = new Faker();
-        cartao = new Cartao(faker.number().digits(13),gerarBandeirasCartao(), faker.date().toString());
+        PessoaFisicaDaoImplTest pfdit = new PessoaFisicaDaoImplTest();
+        pfdit.buscarPF();
+        PessoaJuridicaDaoImplTest pjdit = new PessoaJuridicaDaoImplTest();
+        pjdit.buscarPJ();
+        cartao = new Cartao(faker.finance().creditCard(CreditCardType.MASTERCARD),gerarBandeirasCartao(), "202" + gerarNumero(1));
+        cartao.setCliente(buscarCliente()); 
         sessao = HibernateUtil.abrirConexao();
         cartaoDao.salvarOuAlterar(cartao, sessao);
         sessao.close();
@@ -93,5 +99,14 @@ public class CartaoDaoImplTest {
             cartao = cartoes.get(0);
         }
         return cartao;
+    }
+    
+    public Cliente buscarCliente(){
+        sessao = HibernateUtil.abrirConexao();
+        Query<Cliente> consulta = sessao.createQuery("from Cliente c");
+        List<Cliente> clientes = consulta.getResultList();
+        sessao.close();
+        Collections.shuffle(clientes);
+        return clientes.get(0);
     }
 }

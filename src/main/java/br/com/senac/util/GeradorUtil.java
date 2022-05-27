@@ -97,9 +97,9 @@ public class GeradorUtil {
     }
         
         public static String gerarBandeirasCartao(){
-        String[] cartoes = {"Elo","Hipercard","American Express","Visa","Mastercard","Diners Club","Nubank","Calcard","Caixa","PicPay","Banco Do Brasil","Santander","Itaú"};
-         int indice = (int)(Math.random() * cartoes.length);         
-        return cartoes[indice];
+        String[] bandeiras = {"Elo","Hipercard","American Express","Visa","Mastercard","Diners Club","Calcard"};
+         int indice = (int)(Math.random() * bandeiras.length);         
+        return bandeiras[indice];
     }
        
 
